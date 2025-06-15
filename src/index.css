@@ -1,0 +1,315 @@
+/* ===== IMPORTS ===== */
+@import "tailwindcss";
+@import url('https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+@import "@flaticon/flaticon-uicons/css/all/all";
+
+
+/* Make dark variant work without config.js */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===== CSS CUSTOM PROPERTIES ===== */
+/* Root variables for light theme */
+:root {
+  /* Background colors */
+  --color-bg-primary: 255 255 255;
+  --color-bg-secondary: 248 250 252;
+  --color-bg-tertiary: 241 245 249;
+  --color-bg-accent: 236 254 255;
+  
+  /* Text colors */
+  --color-text-primary: 15 23 42;
+  --color-text-secondary: 51 65 85;
+  --color-text-tertiary: 100 116 139;
+  --color-text-accent: 14 116 144;
+  
+  /* Border colors */
+  --color-border-primary: 226 232 240;
+  --color-border-secondary: 203 213 225;
+  --color-border-accent: 125 211 252;
+  
+  /* Brand colors */
+  --color-brand-primary: 59 130 246;
+  --color-brand-secondary: 147 51 234;
+  --color-brand-accent: 236 72 153;
+  
+  /* Status colors */
+  --color-success: 34 197 94;
+  --color-warning: 245 158 11;
+  --color-error: 239 68 68;
+  --color-info: 59 130 246;
+  
+  /* Interactive states */
+  --color-hover: 241 245 249;
+  --color-active: 226 232 240;
+  --color-focus: 59 130 246;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Dark theme variables */
+.dark {
+  /* Background colors */
+  --color-bg-primary: 2 6 23;
+  --color-bg-secondary: 15 23 42;
+  --color-bg-tertiary: 30 41 59;
+  --color-bg-accent: 7 89 133;
+  
+  /* Text colors */
+  --color-text-primary: 248 250 252;
+  --color-text-secondary: 203 213 225;
+  --color-text-tertiary: 148 163 184;
+  --color-text-accent: 125 211 252;
+  
+  /* Border colors */
+  --color-border-primary: 51 65 85;
+  --color-border-secondary: 71 85 105;
+  --color-border-accent: 14 165 233;
+  
+  /* Brand colors */
+  --color-brand-primary: 96 165 250;
+  --color-brand-secondary: 168 85 247;
+  --color-brand-accent: 244 114 182;
+  
+  /* Status colors */
+  --color-success: 74 222 128;
+  --color-warning: 251 191 36;
+  --color-error: 248 113 113;
+  --color-info: 96 165 250;
+  
+  /* Interactive states */
+  --color-hover: 30 41 59;
+  --color-active: 51 65 85;
+  --color-focus: 96 165 250;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+}
+
+/* ===== TAILWIND UTILITY LAYER ===== */
+@layer utilities {
+  /* Background utilities */
+  .bg-primary { background-color: rgb(var(--color-bg-primary)); }
+  .bg-secondary { background-color: rgb(var(--color-bg-secondary)); }
+  .bg-tertiary { background-color: rgb(var(--color-bg-tertiary)); }
+  .bg-accent { background-color: rgb(var(--color-bg-accent)); }
+  
+  /* Text utilities */
+  .text-primary { color: rgb(var(--color-text-primary)); }
+  .text-secondary { color: rgb(var(--color-text-secondary)); }
+  .text-tertiary { color: rgb(var(--color-text-tertiary)); }
+  .text-accent { color: rgb(var(--color-text-accent)); }
+  
+  /* Border utilities */
+  .border-primary { border-color: rgb(var(--color-border-primary)); }
+  .border-secondary { border-color: rgb(var(--color-border-secondary)); }
+  .border-accent { border-color: rgb(var(--color-border-accent)); }
+  
+  /* Brand utilities */
+  .bg-brand { background-color: rgb(var(--color-brand-primary)); }
+  .bg-brand-secondary { background-color: rgb(var(--color-brand-secondary)); }
+  .bg-brand-accent { background-color: rgb(var(--color-brand-accent)); }
+  .text-brand { color: rgb(var(--color-brand-primary)); }
+  .text-brand-secondary { color: rgb(var(--color-brand-secondary)); }
+  .text-brand-accent { color: rgb(var(--color-brand-accent)); }
+  .border-brand { border-color: rgb(var(--color-brand-primary)); }
+  
+  /* Status utilities */
+  .bg-success { background-color: rgb(var(--color-success)); }
+  .bg-warning { background-color: rgb(var(--color-warning)); }
+  .bg-error { background-color: rgb(var(--color-error)); }
+  .bg-info { background-color: rgb(var(--color-info)); }
+  .text-success { color: rgb(var(--color-success)); }
+  .text-warning { color: rgb(var(--color-warning)); }
+  .text-error { color: rgb(var(--color-error)); }
+  .text-info { color: rgb(var(--color-info)); }
+  
+  /* Interactive states */
+  .hover-bg { background-color: rgb(var(--color-hover)); }
+  .active-bg { background-color: rgb(var(--color-active)); }
+  .focus-ring { 
+    outline: 2px solid rgb(var(--color-focus));
+    outline-offset: 2px;
+  }
+  
+  /* Shadow utilities */
+  .shadow-themed-sm { box-shadow: var(--shadow-sm); }
+  .shadow-themed-md { box-shadow: var(--shadow-md); }
+  .shadow-themed-lg { box-shadow: var(--shadow-lg); }
+  .shadow-themed-xl { box-shadow: var(--shadow-xl); }
+}
+
+/* ===== BASE STYLES ===== */
+/* Smooth transitions for all elements */
+* {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+/* Webkit browsers scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-bg-secondary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-border-secondary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-text-tertiary));
+}
+
+/* ===== SELECTION STYLING ===== */
+::selection {
+  background-color: rgb(var(--color-brand-primary) / 0.2);
+  color: rgb(var(--color-text-primary));
+}
+
+/* ===== FOCUS STYLING ===== */
+/* Better accessibility focus */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-focus));
+  outline-offset: 2px;
+}
+
+/* ===== THEME TOGGLE COMPONENT STYLES ===== */
+/* Main toggle container */
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  background-color: rgb(var(--color-bg-tertiary));
+  border: 2px solid rgb(var(--color-border-primary));
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: rgb(var(--color-hover));
+  border-color: rgb(var(--color-border-accent));
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid rgb(var(--color-focus));
+  outline-offset: 2px;
+}
+
+/* Sliding circle indicator */
+.theme-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background-color: rgb(var(--color-brand-primary));
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.theme-slider.dark {
+  transform: translateX(28px);
+  background-color: rgb(var(--color-brand-secondary));
+}
+
+/* Icon styling inside slider */
+.theme-icon {
+  font-size: 12px;
+  color: white;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+/* Background labels for sun/moon */
+.theme-label {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgb(var(--color-text-tertiary));
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.theme-label.sun {
+  left: 6px;
+}
+
+.theme-label.moon {
+  right: 6px;
+}
+
+/* Hide labels when slider is over them */
+.theme-toggle:not(.dark) .theme-label.sun,
+.theme-toggle.dark .theme-label.moon {
+  opacity: 0.3;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* Adjust theme toggle size on smaller screens */
+@media (max-width: 640px) {
+  .theme-toggle {
+    width: 56px;
+    height: 30px;
+  }
+  
+  .theme-slider {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .theme-slider.dark {
+    transform: translateX(26px);
+  }
+  
+  .theme-icon {
+    font-size: 11px;
+  }
+}
+
+/* ===== ANIMATION KEYFRAMES ===== */
+/* Optional: Add a subtle bounce animation when toggling */
+@keyframes toggleBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.theme-slider.animate-toggle {
+  animation: toggleBounce 0.3s ease;
+}
+
+/* ===== PRINT STYLES ===== */
+/* Ensure proper styling when printing */
+@media print {
+  .theme-toggle {
+    display: none;
+  }
+  
+  * {
+    transition: none !important;
+  }
+}

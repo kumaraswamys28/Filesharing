@@ -8,6 +8,7 @@ const Editor = () => {
         <div className="editorwrap text-secondary">this is editor 1.06.20 this is jsut a test</div>
         </div></div>
   )
+  
 }
 
 export default Editor

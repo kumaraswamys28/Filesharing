@@ -12,11 +12,30 @@ function App() {
     <>
       <div>
         <Toaster
-          position="bottom-right"
+          position="top-center"
           toastOptions={{
+            duration: 4000,
+            style: {
+              background: "rgb(var(--color-bg-secondary))",
+              color: "rgb(var(--color-text-primary))",
+              border: "1px solid rgb(var(--color-border-primary))",
+              boxShadow: "var(--shadow-themed-md)",
+              padding: "16px 20px",
+              fontSize: "0.875rem",
+              borderRadius: "0.75rem",
+              minWidth: "260px",
+              maxWidth: "400px",
+            },
             success: {
-              theme: {
-                primary: "#4ade80",
+              iconTheme: {
+                primary: "rgb(var(--color-success))",
+                secondary: "rgb(var(--color-bg-primary))",
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: "rgb(var(--color-error))",
+                secondary: "rgb(var(--color-bg-primary))",
               },
             },
           }}

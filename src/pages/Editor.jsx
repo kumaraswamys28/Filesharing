@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Client from "../componets/Client";
 import toast from "react-hot-toast";
+import Sharebin from "../componets/Sharebin";
 
 const Editor = () => {
   const [clients] = useState([
@@ -41,24 +42,25 @@ const Editor = () => {
       });
   };
 
-const Sharebtn = () => {
-  const shareData = {
-    title: "Join my session",
-    text: "Join me in this room:",
-    url: window.location.href,
-  };
+  const Sharebtn = () => {
+    const shareData = {
+      title: "Join my session",
+      text: "Join me in this room:",
+      url: window.location.href,
+    };
 
-  if (navigator.share) {
-    navigator.share(shareData).catch((err) => toast.error("Share failed:", err));
-  } else {
-    toast.error("Sharing not supported. Copying link instead.");
-    navigator.clipboard.writeText(shareData.url);
-  }
-};
+    if (navigator.share) {
+      navigator
+        .share(shareData)
+        .catch((err) => toast.error("Share failed:", err));
+    } else {
+      toast.error("Sharing not supported. Copying link instead.");
+      navigator.clipboard.writeText(shareData.url);
+    }
+  };
 
   return (
     <div className="min-h-[100vh] bg-primary flex">
-
       <div className="w-80 bg-secondary border-r border-primary shadow-themed-lg">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-primary">
@@ -131,7 +133,10 @@ const Sharebtn = () => {
                 Quick Actions
               </h3>
               <div className="grid grid-cols-2 gap-3">
-                <button onClick={Sharebtn} className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
+                <button
+                  onClick={Sharebtn}
+                  className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm"
+                >
                   <i className="fi fi-br-share text-brand text-lg mb-2 block"></i>
                   <span className="text-xs text-primary font-medium">
                     Share
@@ -160,7 +165,7 @@ const Sharebtn = () => {
           <p className="text-secondary text-sm">
             Your code editor will go here
           </p> */}
-          <Sharebin/>
+          <Sharebin />{" "}
         </div>
       </div>
     </div>

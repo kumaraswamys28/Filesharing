@@ -131,7 +131,6 @@ const Login = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              disabled={!roomId.trim()}
               className="w-full bg-brand hover:bg-blue-600 disabled:bg-tertiary disabled:text-tertiary disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-xl shadow-themed-md hover:shadow-themed-lg transform hover:-translate-y-0.5 disabled:transform-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-secondary"
             >
               <span className="flex items-center justify-center">

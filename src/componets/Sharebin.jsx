@@ -58,13 +58,16 @@ const Sharebin = () => {
   };
 
   const getFileIcon = (fileType) => {
-    if (fileType.startsWith('image/')) return '🖼️';
-    if (fileType.startsWith('video/')) return '🎥';
-    if (fileType.startsWith('audio/')) return '🎵';
-    if (fileType.includes('pdf')) return '📄';
-    if (fileType.includes('text')) return '📝';
-    if (fileType.includes('zip') || fileType.includes('rar')) return '📦';
-    return '📁';
+ if (!fileType) return 'fi fi-br-file'; // default
+
+  if (fileType.startsWith('image/')) return 'fi fi-br-picture';
+  if (fileType.startsWith('video/')) return 'fi fi-br-video-camera';
+  if (fileType.startsWith('audio/')) return 'fi fi-br-music-alt';
+  if (fileType.includes('pdf')) return 'fi fi-br-file-pdf';
+  if (fileType.includes('text')) return 'fi fi-br-document';
+  if (fileType.includes('zip') || fileType.includes('rar')) return 'fi fi-br-folder-download';
+
+  return 'fi fi-br-file'; // fallback
   };
 
   return (
@@ -133,9 +136,10 @@ const Sharebin = () => {
                     className="flex items-center justify-between p-3 bg-secondary border border-primary rounded-lg hover:bg-tertiary transition-colors duration-200"
                   >
                     <div className="flex items-center gap-3 flex-1 min-w-0">
-                      <span className="text-xl flex-shrink-0">
-                        {getFileIcon(file.type)}
-                      </span>
+                     <span className="text-xl flex-shrink-0">
+  <i className={getFileIcon(file.type)}></i>
+</span>
+
                       <div className="min-w-0 flex-1">
                         <p className="text-primary font-medium truncate">
                           {file.name}
@@ -160,6 +164,9 @@ const Sharebin = () => {
             </div>
           )}
         </div>
+
+
+
       </div>
     </div>
   );

@@ -43,7 +43,7 @@ const Editor = () => {
             </div>
             <div>
               <h1 className="text-lg font-bold text-primary">{currentUser}</h1>
-              <p className="text-xs text-secondary">Room: ABC123</p>
+              <p className="text-xs text-secondary">Room: {roomId}</p>
             </div>
           </div>
         </div>

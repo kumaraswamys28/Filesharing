@@ -85,7 +85,7 @@ const Editor = () => {
               
               <div className="space-y-3">
                 {clients.map((client, index) => (
-                <Client key={client.socketId+index} username={client.username} userState={client.userState} />
+                <Client key={client.socketId+index} username={client.username} userState={client.userState} initial={client.username?.charAt(0).toUpperCase() || 'K'} />
                 ))}
               </div>
             </div>

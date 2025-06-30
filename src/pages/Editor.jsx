@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Client from "../componets/Client";
 import toast from "react-hot-toast";
@@ -25,6 +25,7 @@ const Editor = () => {
   const location = useLocation(); //  sate object
   const { roomId, currentUser, timestamp } = location.state
 
+  const navigate=useNavigate();
    const CopyLink = () => {
     const fullUrl = `${window.location.origin}/editor/${paramRoomId}`;
     navigator.clipboard.writeText(fullUrl)
@@ -110,7 +111,9 @@ const Editor = () => {
                   <span className="text-xs text-primary font-medium">Share</span>
                 </button>
                
-                <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
+                <button onClick={()=>{
+                    navigate(-1)
+                }} className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
                   <i className="fi fi-br-sign-out-alt text-error text-lg mb-2 block"></i>
                   <span className="text-xs text-error font-medium">Leave</span>
                 </button>

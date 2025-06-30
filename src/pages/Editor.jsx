@@ -32,7 +32,7 @@ const Editor = () => {
 
 
   return (
-    <div className="min-h-[100vh] bg-primary flex">
+    <div className="min-h-[105vh] bg-primary flex">
       {/* Sidebar */}
       <div className="w-80 bg-secondary border-r border-primary shadow-themed-lg">
         {/* Header */}
@@ -102,7 +102,7 @@ const Editor = () => {
                   <i className="fi fi-br-share text-brand text-lg mb-2 block"></i>
                   <span className="text-xs text-primary font-medium">Share</span>
                 </button>
-               s
+               
                 <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
                   <i className="fi fi-br-sign-out-alt text-error text-lg mb-2 block"></i>
                   <span className="text-xs text-error font-medium">Leave</span>

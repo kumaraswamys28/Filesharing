@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Client = (username) => {
+const Client = ({username}) => {
   return (
     <div className='client'>
       <span className='userName'>{username}</span>

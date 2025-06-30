@@ -1,35 +1,129 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation, useParams } from 'react-router-dom';
+
 import Client from "../componets/Client";
+import toast from "react-hot-toast";
+
 const Editor = () => {
-    const clients=[
-    { socketId: 1, username: "test" },
-    { socketId: 1, username: "test" },
-    { socketId: 1, username: "test" },
-  ];
-//   const [clients, setClients] = useState([]);
-//   useEffect(()=>{
-//     setClients([
-//     { socketId: 1, username: "test" },
-//     { socketId: 1, username: "test" },
-//     { socketId: 1, username: "test" },
-//   ])
-//   },[])
+  const [clients] = useState([
+    { socketId: 1, username: "Alice" ,userState:"uploading"},
+    { socketId: 2, username: "Bob" ,userState:"idle" },
+    { socketId: 1, username: "Alice" ,userState:"uploading"},
+    { socketId: 2, username: "Bob" ,userState:"idle" },
+    { socketId: 1, username: "Alice" ,userState:"uploading"},
+    { socketId: 2, username: "Bob" ,userState:"idle" },
+    { socketId: 3, username: "Charlie" ,userState:"editing" },
+  ]);
+  const { roomId: paramRoomId } = useParams();
+  const location = useLocation(); //  sate object
+  const { roomId, currentUser, timestamp } = location.state
+
+   const CopyLink = () => {
+    const fullUrl = `${window.location.origin}/editor/${paramRoomId}`;
+    navigator.clipboard.writeText(fullUrl)
+      .then(() => {
+        // Optional: show toast or feedback
+       toast.success('Copied to clipboard');
+      })
+      .catch(err => {
+        toast.error('Failed to copy:', err);
+      });
+  };
+
+
   return (
-    <div className="min-h-[100vh] bg-primary flex pt-16 justify-center">
-      <div className="w-full max-w-md">
-        <div className="aside text-primary">
-          this is aside
-          <div className="aside-inner">
-            <h1>this is inner</h1>
-            <div className="client-list">
-              {clients.map((client) => {
-                <Client key={client.socketId} username={client.username} />;
-              })}
+    <div className="min-h-[100vh] bg-primary flex">
+      {/* Sidebar */}
+      <div className="w-80 bg-secondary border-r border-primary shadow-themed-lg">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-primary">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-brand rounded-lg flex items-center justify-center shadow-themed-sm">
+              <i className="fi fi-br-code text-white text-lg"></i>
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-primary">{currentUser}</h1>
+              <p className="text-xs text-secondary">Room: ABC123</p>
             </div>
           </div>
         </div>
-        <div className="editorwrap text-secondary">
-          this is editor 1.06.20 this is jsut a test
+
+        {/* Sidebar Content */}
+        <div className="flex-1 overflow-y-auto h-full">
+          <div className="p-6 space-y-6">
+            {/* Room Info */}
+            <div className="bg-tertiary rounded-xl p-4 border border-primary">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold text-primary">Room Info</h3>
+                <button className="p-1 text-secondary hover:text-primary transition-colors duration-200">
+                  <i className="fi fi-br-copy text-xs" onClick={CopyLink}></i>
+                </button>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center text-xs">
+                  <i className="fi fi-br-key text-brand mr-2"></i>
+                  <span className="text-secondary">ID: {roomId}</span>
+                </div>
+                <div className="flex items-center text-xs">
+                  <i className="fi fi-br-clock text-brand mr-2"></i>
+                  <span className="text-secondary"> Joined on {timestamp}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Connected Users */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-semibold text-primary flex items-center">
+                  <i className="fi fi-br-users text-brand mr-2"></i>
+                  Connected Users
+                </h3>
+                <span className="bg-brand text-white text-xs px-2 py-1 rounded-full font-medium">
+                  {clients.length}
+                </span>
+              </div>
+              
+              <div className="space-y-3">
+                {clients.map((client, index) => (
+                <Client key={client.socketId+index} username={client.username} userState={client.userState} />
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div>
+              <h3 className="text-sm font-semibold text-primary mb-4 flex items-center">
+                <i className="fi fi-br-bolt text-brand mr-2"></i>
+                Quick Actions
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
+                  <i className="fi fi-br-download text-brand text-lg mb-2 block"></i>
+                  <span className="text-xs text-primary font-medium">Download</span>
+                </button>
+                <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
+                  <i className="fi fi-br-share text-brand text-lg mb-2 block"></i>
+                  <span className="text-xs text-primary font-medium">Share</span>
+                </button>
+                <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
+                  <i className="fi fi-br-settings text-brand text-lg mb-2 block"></i>
+                  <span className="text-xs text-primary font-medium">Settings</span>
+                </button>
+                <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
+                  <i className="fi fi-br-sign-out-alt text-error text-lg mb-2 block"></i>
+                  <span className="text-xs text-error font-medium">Leave</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 bg-primary">
+        <div className="p-6">
+          <h3 className="font-medium text-primary mb-2">Main Editor Area</h3>
+          <p className="text-secondary text-sm">Your code editor will go here</p>
         </div>
       </div>
     </div>

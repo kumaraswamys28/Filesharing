@@ -24,7 +24,7 @@ const Login = () => {
     navigate(`/editor/${roomId.trim()}`, {
       state: {
         roomId: roomId.trim(),
-        name: name.trim(),
+        currentUser: name.trim(),
         timestamp: new Date().toISOString(),
       }, //staet objext to pass to next
     });

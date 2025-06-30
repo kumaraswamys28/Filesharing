@@ -32,7 +32,7 @@ const Editor = () => {
 
 
   return (
-    <div className="min-h-[105vh] bg-primary flex">
+    <div className="min-h-[200vh] bg-primary flex">
       {/* Sidebar */}
       <div className="w-80 bg-secondary border-r border-primary shadow-themed-lg">
         {/* Header */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
@@ -34,21 +34,33 @@ const Login = () => {
       timestamp: new Date().toISOString(),
     });
   };
+
+
+
   const Createnewroom = (e) => {
     e.preventDefault();
     const id = uuidV4();
     setRoomId(id);
     toast.success(`New room created with ID: ${id}`);
   };
+
+
+
   const handelkey = (e) => {
     if (e.key === "Enter") {
       handleSubmit(e);
     }
   };
+
+
+
+
   return (
     <div className="min-h-[100vh] bg-primary flex pt-16 justify-center">
       <div className="w-full max-w-md">
         <div className="bg-secondary rounded-2xl shadow-themed-xl p-8 border border-primary">
+
+
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-brand rounded-full mb-4 shadow-themed-md">
               <i className="fi fi-br-users text-white text-2xl"></i>
@@ -58,6 +70,8 @@ const Login = () => {
               Enter your details to connect with others
             </p>
           </div>
+
+
           <div className="space-y-6">
             {/* Room ID Input */}
             <div className="space-y-2">
@@ -127,10 +141,10 @@ const Login = () => {
             </button>
           </div>
 
-          {/* Divider */}
+
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-primary"></div>
+              <div className="w-full border-t border-primary">teststse</div>
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-4 bg-secondary text-tertiary">or</span>
@@ -151,12 +165,12 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="text-center mt-6">
           <p className="text-tertiary text-xs">
-            Secure and private room connections
+            Secure and private room connection
           </p>
         </div>
+
       </div>
     </div>
   );

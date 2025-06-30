@@ -156,10 +156,11 @@ const Sharebtn = () => {
       {/* Main Content Area */}
       <div className="flex-1 bg-primary">
         <div className="p-6">
-          <h3 className="font-medium text-primary mb-2">Main Editor Area</h3>
+          {/* <h3 className="font-medium text-primary mb-2">Main Editor Area</h3>
           <p className="text-secondary text-sm">
             Your code editor will go here
-          </p>
+          </p> */}
+          <Sharebin/>
         </div>
       </div>
     </div>

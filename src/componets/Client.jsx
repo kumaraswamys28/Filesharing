@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Client = ({ username,userState }) => {
-  const initial = username?.charAt(0).toUpperCase() || 'K'
+const Client = ({ username,userState,initial }) => {
+  
 
   return (
     <div className="flex items-center space-x-3 p-3 bg-tertiary rounded-lg border border-primary hover:shadow-themed-sm transition-all duration-200">

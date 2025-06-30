@@ -1,5 +1,3 @@
-
-
 export default function ThemeShowcase() {
   return (<>
     <div className="min-h-screen bg-primary text-primary p-6">

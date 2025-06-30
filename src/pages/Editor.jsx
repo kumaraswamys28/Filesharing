@@ -13,6 +13,13 @@ const Editor = () => {
     { socketId: 1, username: "Alice" ,userState:"uploading"},
     { socketId: 2, username: "Bob" ,userState:"idle" },
     { socketId: 3, username: "Charlie" ,userState:"editing" },
+    { socketId: 1, username: "Alice" ,userState:"uploading"},
+    { socketId: 2, username: "Bob" ,userState:"idle" },
+    { socketId: 1, username: "Alice" ,userState:"uploading"},
+    { socketId: 2, username: "Bob" ,userState:"idle" },
+    { socketId: 1, username: "Alice" ,userState:"uploading"},
+    { socketId: 2, username: "Bob" ,userState:"idle" },
+    { socketId: 3, username: "Charlie" ,userState:"editing" },
   ]);
   const { roomId: paramRoomId } = useParams();
   const location = useLocation(); //  sate object

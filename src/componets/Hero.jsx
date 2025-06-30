@@ -43,8 +43,8 @@ const Hero = () => {
                 className="theme-toggle"
                 aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
               >
-                <span className="theme-label sun">☀</span>
-                <span className="theme-label moon">🌙</span>
+                <span className="theme-label sun"></span>
+                <span className="theme-label moon"></span>
                 <div className={`theme-slider ${theme === 'dark' ? 'dark' : ''}`}>
                   <i className={`fi ${theme === 'light' ? 'fi-br-brightness' : 'fi-br-moon'} theme-icon`}></i>
                 </div>

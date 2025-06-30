@@ -97,18 +97,12 @@ const Editor = () => {
                 Quick Actions
               </h3>
               <div className="grid grid-cols-2 gap-3">
-                <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
-                  <i className="fi fi-br-download text-brand text-lg mb-2 block"></i>
-                  <span className="text-xs text-primary font-medium">Download</span>
-                </button>
+                
                 <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
                   <i className="fi fi-br-share text-brand text-lg mb-2 block"></i>
                   <span className="text-xs text-primary font-medium">Share</span>
                 </button>
-                <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
-                  <i className="fi fi-br-settings text-brand text-lg mb-2 block"></i>
-                  <span className="text-xs text-primary font-medium">Settings</span>
-                </button>
+               s
                 <button className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm">
                   <i className="fi fi-br-sign-out-alt text-error text-lg mb-2 block"></i>
                   <span className="text-xs text-error font-medium">Leave</span>

@@ -130,7 +130,7 @@ const Sharebin = () => {
 
           {/* Uploaded Files List */}
           {uploadedFiles.length > 0 && (
-            <div className="mt-4">
+            <div className="mt-4 h-auto">
               <h4 className="font-medium text-secondary mb-3">
                 Uploaded Files ({uploadedFiles.length})
               </h4>

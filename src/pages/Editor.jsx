@@ -26,7 +26,6 @@ const Editor = () => {
   const { roomId: paramRoomId } = useParams();
   const location = useLocation(); //  sate object
     const navigate = useNavigate();
- var { roomId, currentUser, timestamp } = location.state;
 
   useEffect(() => {
     if (!location.state) {
@@ -34,7 +33,8 @@ const Editor = () => {
     }
   }, [location.state, navigate]);
 
- 
+  const { roomId, currentUser, timestamp } = location.state;
+
 
 
 

@@ -28,7 +28,7 @@ const Editor = () => {
     const navigate = useNavigate();
 
   if (location.state==null) {
-    navigate("*");
+    navigate("/");
   }else{
  var { roomId, currentUser, timestamp } = location.state;
   }

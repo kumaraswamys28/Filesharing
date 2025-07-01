@@ -134,7 +134,7 @@ const Sharebin = () => {
               <h4 className="font-medium text-secondary mb-3">
                 Uploaded Files ({uploadedFiles.length})
               </h4>
-              <div className="space-y-2 max-h-48 overflow-y-auto">
+              <div className="space-y-2 h-auto overflow-y-auto">
                 {uploadedFiles.map((file) => (
                   <div
                     key={file.id}

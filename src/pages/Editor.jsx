@@ -35,7 +35,7 @@ const Editor = () => {
   }, [location.state, navigate]);
 
   const roomId = location.state?.roomId;
-  const currentUser = location.state?.currentUser;
+  const currentUser = location.state?.currentUser|| "Guest";
   const timestamp = location.state?.timestamp;
 
 

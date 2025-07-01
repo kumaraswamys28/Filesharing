@@ -136,7 +136,7 @@ const Sharebin = () => {
                     className="flex items-center justify-between p-3 bg-secondary border border-primary rounded-lg hover:bg-tertiary transition-colors duration-200"
                   >
                     <div className="flex items-center gap-3 flex-1 min-w-0">
-                     <span className="text-xl bg-amber-50 aspect-square flex-shrink-0">
+<span className="text-xl bg-amber-50 aspect-square flex-shrink-0 rounded-md flex items-center justify-center">
   <i className={`${getFileIcon(file.type)}`}></i>
 </span>
 

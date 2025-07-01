@@ -27,7 +27,12 @@ const Editor = () => {
   const location = useLocation(); //  sate object
     const navigate = useNavigate();
 
- ?
+  // useEffect(() => {
+  //   if (!location.state) {
+  //     toast.error("Invalid room access. Redirecting...");
+  //     navigate("/");
+  //   }
+  // }, [location.state, navigate]);
   const roomId = location.state?.roomId;
   const currentUser = location.state?.currentUser|| "Guest";
   const timestamp = location.state?.timestamp;

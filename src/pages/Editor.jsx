@@ -29,7 +29,7 @@ const Editor = () => {
 
   useEffect(() => {
     if (!location.state) {
-      navigate("/");
+      navigate("*");
     }
   }, [location.state, navigate]);
 

@@ -26,12 +26,17 @@ const Editor = () => {
   const { roomId: paramRoomId } = useParams();
   const location = useLocation(); //  sate object
     const navigate = useNavigate();
+ var { roomId, currentUser, timestamp } = location.state;
 
- useEffect(() => {
+  useEffect(() => {
     if (!location.state) {
       navigate("/");
     }
   }, [location.state, navigate]);
+
+ 
+
+
 
   const CopyLink = () => {
     const fullUrl = `${window.location.origin}/editor/${paramRoomId}`;

@@ -137,7 +137,7 @@ const Sharebin = () => {
                   >
                     <div className="flex items-center gap-3 flex-1 min-w-0">
 <span className="text-xl bg-amber-50 aspect-square flex-shrink-0 rounded-md flex items-center justify-center">
-  <i className={`${getFileIcon(file.type)}`}></i>
+  <i className={`${getFileIcon(file.type)} border-accent`}></i>
 </span>
 
                       <div className="min-w-0 flex-1">

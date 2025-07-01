@@ -74,7 +74,7 @@ const Editor = () => {
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-primary">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-brand rounded-lg flex items-center justify-center shadow-themed-sm">
+            <div className="w-10 h-10 bg-brand aspect-square rounded-lg flex items-center justify-center shadow-themed-sm">
               <i className="fi fi-br-code text-white text-lg">
                 {currentUser?.charAt(0).toUpperCase() || "K"}
               </i>

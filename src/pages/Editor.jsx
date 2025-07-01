@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Client from "../componets/Client";
@@ -28,13 +28,17 @@ const Editor = () => {
   const { roomId, currentUser, timestamp } = location.state;
 
   const navigate = useNavigate();
+useEffect(() => {
+    if (!roomId || !currentUser || !timestamp) {
+      navigate("*");
+    }
+}, [roomId, currentUser, timestamp]);
 
   const CopyLink = () => {
     const fullUrl = `${window.location.origin}/editor/${paramRoomId}`;
     navigator.clipboard
       .writeText(fullUrl)
       .then(() => {
-        // Optional: show toast or feedback
         toast.success("Copied to clipboard");
       })
       .catch((err) => {

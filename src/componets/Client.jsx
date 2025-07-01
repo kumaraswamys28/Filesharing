@@ -9,10 +9,11 @@ const Client = ({ username,userState,initial }) => {
 
       <div className="w-8 h-8 bg-gradient-to-br from-brand to-brand-secondary border-accent rounded-full flex items-center justify-center text-accent text-sm font-bold shadow-themed-sm">
         {initial}
-        userState === "online" ? (
+        {(userState === "online") ? (
           <i className="fi fi-br-circle-check text-brand"></i>
         ) : (
           <i className="fi fi-br-circle-xmark text-secondary"></i>
+        )}
       </div>
 
       <div className="flex-1 min-w-0">

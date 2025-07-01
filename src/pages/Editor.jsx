@@ -65,7 +65,7 @@ const Editor = () => {
         .catch((err) => toast.error("Share failed:", err));
     } else {
       toast.error("Sharing not supported. Copying link instead.");
-      navigator.clipboard.writeText(shareData.url);
+      navigator.clipboard.writeText(`${shareData.title}\n ${shareData.text}${shareData.url}`);
     }
   };
 

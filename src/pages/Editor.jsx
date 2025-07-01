@@ -25,14 +25,15 @@ const Editor = () => {
 
   const { roomId: paramRoomId } = useParams();
   const location = useLocation(); //  sate object
-  const { roomId, currentUser, timestamp } = location.state;
+  if (location.state==null) {
+    navigate("*");
+  }else{
+ var { roomId, currentUser, timestamp } = location.state;
+  }
+ 
 
   const navigate = useNavigate();
-useEffect(() => {
-    if (!roomId || !currentUser || !timestamp) {
-      navigate("*");
-    }
-}, [roomId, currentUser, timestamp]);
+
 
   const CopyLink = () => {
     const fullUrl = `${window.location.origin}/editor/${paramRoomId}`;

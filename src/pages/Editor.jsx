@@ -90,7 +90,7 @@ const Editor = () => {
         <div className="flex-1 overflow-y-auto h-full">
           <div className="p-6 space-y-6">
             {/* Room Info */}
-            <div className="bg-tertiary rounded-xl p-4 border border-primary">
+            <div className="bg-tertiary rounded-xl p-4 border border-accent">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-primary">
                   Room Info

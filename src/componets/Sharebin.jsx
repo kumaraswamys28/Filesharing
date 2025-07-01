@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Sharebin = () => {
-  const [textContent, setTextContent] = useState('');
+  const [textContent, setTextContent] = useState("");
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isDragOver, setIsDragOver] = useState(false);
 
@@ -11,14 +11,14 @@ const Sharebin = () => {
 
   const handleFileUpload = (files) => {
     const fileArray = Array.from(files);
-    const newFiles = fileArray.map(file => ({
+    const newFiles = fileArray.map((file) => ({
       id: Date.now() + Math.random(),
       name: file.name,
       size: file.size,
       type: file.type,
-      file: file
+      file: file,
     }));
-    setUploadedFiles(prev => [...prev, ...newFiles]);
+    setUploadedFiles((prev) => [...prev, ...newFiles]);
   };
 
   const handleFileInputChange = (e) => {
@@ -46,28 +46,29 @@ const Sharebin = () => {
   };
 
   const removeFile = (fileId) => {
-    setUploadedFiles(prev => prev.filter(file => file.id !== fileId));
+    setUploadedFiles((prev) => prev.filter((file) => file.id !== fileId));
   };
 
   const formatFileSize = (bytes) => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return "0 Bytes";
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
   const getFileIcon = (fileType) => {
- if (!fileType) return 'fi fi-br-file'; // default
+    if (!fileType) return "fi fi-br-file"; // default
 
-  if (fileType.startsWith('image/')) return 'fi fi-br-picture';
-  if (fileType.startsWith('video/')) return 'fi fi-br-video-camera';
-  if (fileType.startsWith('audio/')) return 'fi fi-br-music-alt';
-  if (fileType.includes('pdf')) return 'fi fi-br-file-pdf';
-  if (fileType.includes('text')) return 'fi fi-br-document';
-  if (fileType.includes('zip') || fileType.includes('rar')) return 'fi fi-br-folder-download';
+    if (fileType.startsWith("image/")) return "fi fi-br-picture";
+    if (fileType.startsWith("video/")) return "fi fi-br-video-camera";
+    if (fileType.startsWith("audio/")) return "fi fi-br-music-alt";
+    if (fileType.includes("pdf")) return "fi fi-br-file-pdf";
+    if (fileType.includes("text")) return "fi fi-br-document";
+    if (fileType.includes("zip") || fileType.includes("rar"))
+      return "fi fi-br-folder-download";
 
-  return 'fi fi-br-file'; // fallback
+    return "fi fi-br-file"; // fallback
   };
 
   return (
@@ -86,23 +87,26 @@ const Sharebin = () => {
             onChange={handleTextChange}
             placeholder="Start typing your content here..."
             className="w-full h-full min-h-[300px] p-4 bg-secondary border border-primary rounded-lg text-primary placeholder:text-tertiary resize-none focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all duration-200"
-            style={{ fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace' }}
+            style={{
+              fontFamily:
+                'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+            }}
           />
         </div>
 
         {/* File Upload Section */}
         <div>
           <h3 className="font-medium text-primary text-lg mb-3">File Upload</h3>
-          
+
           {/* Drop Zone */}
           <div
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200 ${
-              isDragOver 
-                ? 'border-brand bg-accent text-accent' 
-                : 'border-primary bg-secondary text-tertiary hover:border-brand hover:bg-accent hover:text-accent'
+              isDragOver
+                ? "border-brand bg-accent text-accent"
+                : "border-primary bg-secondary text-tertiary hover:border-brand hover:bg-accent hover:text-accent"
             }`}
           >
             <input
@@ -115,10 +119,11 @@ const Sharebin = () => {
             <div className="pointer-events-none">
               <div className="text-3xl mb-2">📁</div>
               <p className="text-lg font-medium mb-1">
-                {isDragOver ? 'Drop files here' : 'Drag & drop files here'}
+                {isDragOver ? "Drop files here" : "Drag & drop files here"}
               </p>
               <p className="text-sm">
-                or <span className="text-brand font-medium">click to browse</span>
+                or{" "}
+                <span className="text-brand font-medium">click to browse</span>
               </p>
             </div>
           </div>
@@ -136,9 +141,11 @@ const Sharebin = () => {
                     className="flex items-center justify-between p-3 bg-secondary border border-primary rounded-lg hover:bg-tertiary transition-colors duration-200"
                   >
                     <div className="flex items-center gap-3 flex-1 min-w-0">
-                     <span className="text-xl aspect-square flex-shrink-0">
-  <i className={`${getFileIcon(file.type)} text-accent`}></i>
-</span>
+                      <span className="text-xl aspect-square flex-shrink-0">
+                        <i
+                          className={`${getFileIcon(file.type)} text-accent`}
+                        ></i>
+                      </span>
 
                       <div className="min-w-0 flex-1">
                         <p className="text-primary font-medium truncate">
@@ -154,8 +161,18 @@ const Sharebin = () => {
                       className="flex-shrink-0 ml-3 p-1 text-tertiary hover:text-error hover:bg-error hover:bg-opacity-20 rounded transition-colors duration-200"
                       aria-label={`Remove ${file.name}`}
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
                       </svg>
                     </button>
                   </div>
@@ -164,9 +181,6 @@ const Sharebin = () => {
             </div>
           )}
         </div>
-
-
-
       </div>
     </div>
   );

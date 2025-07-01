@@ -25,6 +25,8 @@ const Editor = () => {
 
   const { roomId: paramRoomId } = useParams();
   const location = useLocation(); //  sate object
+    const navigate = useNavigate();
+
   if (location.state==null) {
     navigate("*");
   }else{
@@ -32,7 +34,6 @@ const Editor = () => {
   }
  
 
-  const navigate = useNavigate();
 
 
   const CopyLink = () => {

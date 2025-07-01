@@ -4,6 +4,7 @@ import ThemeShowcase from "./componets/ThemeShowcase";
 import Login from "./pages/login";
 import Editor from "./pages/Editor";
 import { Toaster } from "react-hot-toast";
+import Errorpage from "./pages/Errorpage";
 
 function App() {
   const currentYear = new Date().getFullYear();
@@ -47,7 +48,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/editor/:roomId" element={<Editor />} />
           <Route path="/t" element={<ThemeShowcase />} />
-          <Route path="*" element={<h1>404 Not Found</h1>} />
+          <Route path="*" element={<Errorpage/>} />
         </Routes>
 
 

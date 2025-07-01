@@ -29,6 +29,7 @@ const Editor = () => {
 
   useEffect(() => {
     if (!location.state) {
+      toast.error("Invalid room access. Redirecting...");
       navigate("*");
     }
   }, [location.state, navigate]);

@@ -29,7 +29,7 @@ const Hero = () => {
   return (
     <header className="w-full bg-primary border-b border-primary px-2 sticky top-0 py-4 shadow-themed-md">
       <div className="flex justify-between w-full mx-2 ">
-        <h1 className="text-2xl font-bold text-primary">Theme Toggle Demo</h1>
+        <h1 className="text-2xl font-bold text-primary">ShareBin</h1>
 
         <div className="flex items-center gap-4">
           <span className="text-sm text-secondary">

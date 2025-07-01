@@ -50,8 +50,9 @@ function App() {
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
 
+
         <footer className="bg-secondary text-primary p-4 w-full fixed bottom-0 text-center border-t border-primary">
-          <p>&copy; {currentYear} Your Company. All rights reserved.</p>
+          <p>&copy; {currentYear} ShareBin. All rights reserved.</p>
         </footer>
       </div>
     </>

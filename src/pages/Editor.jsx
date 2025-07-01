@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Client from "../componets/Client";
@@ -27,14 +27,11 @@ const Editor = () => {
   const location = useLocation(); //  sate object
     const navigate = useNavigate();
 
-  if (location.state==null) {
-    navigate("/");
-  }else{
- var { roomId, currentUser, timestamp } = location.state;
-  }
- 
-
-
+ useEffect(() => {
+    if (!location.state) {
+      navigate("/");
+    }
+  }, [location.state, navigate]);
 
   const CopyLink = () => {
     const fullUrl = `${window.location.origin}/editor/${paramRoomId}`;

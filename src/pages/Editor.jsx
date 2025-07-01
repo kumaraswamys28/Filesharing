@@ -33,9 +33,9 @@ const Editor = () => {
       navigate("/");
     }
   }, [location.state, navigate]);
-
+console.log("Location state:", location.state);
   const roomId = location.state?.roomId;
-  const currentUser = location.state?.currentUser|| "Guest";
+  const currentUser = location.state?.currentUser|| "Guest`";
   const timestamp = location.state?.timestamp;
 
 

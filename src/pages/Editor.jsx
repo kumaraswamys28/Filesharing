@@ -25,7 +25,7 @@ const Editor = () => {
 
   const { roomId: paramRoomId } = useParams();
   const location = useLocation(); //  sate object
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!location.state) {
@@ -36,8 +36,6 @@ const Editor = () => {
   const roomId = location.state?.roomId;
   const currentUser = location.state?.currentUser;
   const timestamp = location.state?.timestamp;
-
-
 
   const CopyLink = () => {
     const fullUrl = `${paramRoomId}`;
@@ -64,7 +62,9 @@ const Editor = () => {
         .catch((err) => toast.error("Share failed:", err));
     } else {
       toast.error("Sharing not supported. Copying link instead.");
-      navigator.clipboard.writeText(`${shareData.title}\n ${shareData.text}${shareData.url}`);
+      navigator.clipboard.writeText(
+        `${shareData.title}\n ${shareData.text}${shareData.url}`
+      );
     }
   };
 
@@ -95,8 +95,12 @@ const Editor = () => {
                 <h3 className="text-sm font-semibold text-primary">
                   Room Info
                 </h3>
-                <button className="p-1 text-secondary hover:text-primary transition-colors duration-200">
-                  <i className="fi fi-br-copy text-xs" onClick={CopyLink}></i>
+                <button onClick={CopyLink} className="relative group p-1 text-secondary bg-secondary aspect-square h-10 cursor-pointer rounded-xl  hover:text-primary transition-colors duration-200">
+                  <i className="fi fi-br-copy text-accent text-xs"></i>
+
+                  <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">
+                    Copy link
+                  </span>
                 </button>
               </div>
               <div className="space-y-2">

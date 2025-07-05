@@ -95,7 +95,10 @@ const Editor = () => {
                 <h3 className="text-sm font-semibold text-primary">
                   Room Info
                 </h3>
-                <button onClick={CopyLink} className="relative group p-1 text-secondary bg-secondary aspect-square h-10 cursor-pointer rounded-xl  hover:text-primary transition-colors duration-200">
+                <button
+                  onClick={CopyLink}
+                  className="relative group p-1 text-secondary bg-secondary aspect-square h-10 cursor-pointer rounded-xl  hover:text-primary transition-colors duration-200"
+                >
                   <i className="fi fi-br-copy text-accent text-xs"></i>
 
                   <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-black rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-10">

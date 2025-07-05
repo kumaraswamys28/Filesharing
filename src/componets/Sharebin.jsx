@@ -5,8 +5,6 @@ const Sharebin = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isDragOver, setIsDragOver] = useState(false);
 
-
-
   const handleFileUpload = (files) => {
     const fileArray = Array.from(files);
     const newFiles = fileArray.map((file) => ({
@@ -72,7 +70,7 @@ const Sharebin = () => {
   return (
     <div className="flex-1 bg-primary">
       <div className="p-6 h-full flex flex-col gap-6">
-        <Textarea/>
+        <Textarea />
 
         <div>
           <h3 className="font-medium text-primary text-lg mb-3">File Upload</h3>
@@ -141,7 +139,6 @@ const Sharebin = () => {
                       aria-label={`Remove ${file.name}`}
                     >
                       <i className="fi fi-rr-cross"></i>
-
                     </button>
                   </div>
                 ))}

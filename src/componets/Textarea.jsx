@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ACTIONS } from "../../actions";
 
-const Textarea = ({ socketRef, roomId, onCodeChange }) => {
+const Textarea = ({ socketRef, roomId }) => {
   const [textContent, setTextContent] = useState("");
 
   const handleTextChange = (e) => {
@@ -17,8 +17,9 @@ const Textarea = ({ socketRef, roomId, onCodeChange }) => {
   useEffect(() => {
     if (socketRef.current) {
       socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
-        onCodeChange(code); // Call the callback to update the parent component
+        console.log("Received code change:", code);
         if (code !== null) {
+        
           setTextContent(code); // This updates the textarea value
         }
       });
@@ -34,7 +35,7 @@ const Textarea = ({ socketRef, roomId, onCodeChange }) => {
       <div className="flex items-center justify-between mb-3">
         <h3 className="font-medium text-primary text-lg">Text Editor</h3>
         <div className="text-tertiary text-sm">
-          {textContent.length} characters
+          {/* {textContent.length} characters */}
         </div>
       </div>
       <textarea

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ACTIONS } from "../../actions";
 
-const Textarea = ({ socketRef, roomId }) => {
+const Textarea = ({ socketRef, roomId, onCodeChange }) => {
   const [textContent, setTextContent] = useState("");
 
   const handleTextChange = (e) => {
@@ -17,6 +17,7 @@ const Textarea = ({ socketRef, roomId }) => {
   useEffect(() => {
     if (socketRef.current) {
       socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
+        onCodeChange(code); // Call the callback to update the parent component
         if (code !== null) {
           setTextContent(code); // This updates the textarea value
         }

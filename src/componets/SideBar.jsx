@@ -122,7 +122,7 @@ const SideBar = ({clients}) => {
 
                 <button
                   onClick={() => {
-                    navigate(-1);
+                    navigate("/");
                   }}
                   className="bg-tertiary hover:bg-hover border border-primary rounded-lg p-3 text-center transition-all duration-200 hover:shadow-themed-sm"
                 >

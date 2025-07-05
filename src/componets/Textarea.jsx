@@ -1,8 +1,11 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 const Textarea = () => {
       const [textContent, setTextContent] = useState("");
     
+      useEffect(()=>{
+
+      },[])
       const handleTextChange = (e) => {
     setTextContent(e.target.value);
   };
@@ -16,6 +19,7 @@ const Textarea = () => {
           </div>
           <textarea
             value={textContent}
+            id='text-editor'
             onChange={handleTextChange}
             placeholder="Start typing your content here..."
             className="w-full h-full min-h-[300px] p-4 bg-secondary border border-primary rounded-lg text-primary placeholder:text-tertiary resize-none focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand transition-all duration-200"

@@ -40,7 +40,7 @@ const Editor = () => {
 
 
   const CopyLink = () => {
-    const fullUrl = `${window.location.origin}/editor/${paramRoomId}`;
+    const fullUrl = `${paramRoomId}`;
     navigator.clipboard
       .writeText(fullUrl)
       .then(() => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Textarea from "./Textarea";
 
-const Sharebin = () => {
+const Sharebin = ({socketRef,roomId}) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [isDragOver, setIsDragOver] = useState(false);
 
@@ -70,7 +70,7 @@ const Sharebin = () => {
   return (
     <div className="flex-1 bg-primary">
       <div className="p-6 h-full flex flex-col gap-6">
-        <Textarea />
+        <Textarea roomId={roomId} socketRef={socketRef}/>
 
         <div>
           <h3 className="font-medium text-primary text-lg mb-3">File Upload</h3>

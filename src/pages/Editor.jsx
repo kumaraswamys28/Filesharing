@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Sharebin from "../componets/Sharebin";
 import SideBar from "../componets/SideBar";
-import { initSocket } from "../Sockets/socket-client";
+import { initSocket } from "../Sockets/socket-client.js";
 import { ACTIONS } from "../../actions";
 
 const Editor = () => {
@@ -26,19 +26,7 @@ const Editor = () => {
     toast.error("An error occurred with the socket connection.");
     navigate("/");
   }
-
-  const [clients, setClient] = useState([
-    { socketId: 1, username: "Alice", userState: "uploading" },
-    { socketId: 2, username: "Bob", userState: "idle" },
-    { socketId: 3, username: "Charlie", userState: "editing" },
-    { socketId: 4, username: "Dave", userState: "viewing" },
-    { socketId: 5, username: "Eve", userState: "idle" },
-    { socketId: 6, username: "Frank", userState: "editing" },
-    { socketId: 7, username: "Grace", userState: "uploading" },
-    { socketId: 8, username: "Heidi", userState: "viewing" },
-  ]);
-
-  useEffect(() => {
+   useEffect(() => {
     const init = async () => {
       socketRef.current = await initSocket();
 
@@ -75,8 +63,20 @@ const Editor = () => {
       socketRef.current.off(ACTIONS.JOINED);  
       socketRef.current.off(ACTIONS.DISCONNECT);
     }
-  }, []);
+  },[]);
 
+  const [clients, setClient] = useState([
+    { socketId: 1, username: "Alice", userState: "uploading" },
+    { socketId: 2, username: "Bob", userState: "idle" },
+    { socketId: 3, username: "Charlie", userState: "editing" },
+    { socketId: 4, username: "Dave", userState: "viewing" },
+    { socketId: 5, username: "Eve", userState: "idle" },
+    { socketId: 6, username: "Frank", userState: "editing" },
+    { socketId: 7, username: "Grace", userState: "uploading" },
+    { socketId: 8, username: "Heidi", userState: "viewing" },
+  ]);
+
+ 
   return (
     <div className="min-h-[100vh] bg-primary flex">
       <div className="w-80 bg-secondary border-r border-primary shadow-themed-lg">
@@ -101,7 +101,7 @@ const Editor = () => {
       {/* Main Content Area */}
       <div className="flex-1 bg-primary">
         <div className="p-6">
-          <Sharebin />{" "}
+          <Sharebin roomId={roomId} socketRef={socketRef} />
         </div>
       </div>
     </div>

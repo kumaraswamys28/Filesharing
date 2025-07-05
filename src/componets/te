@@ -1,33 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ACTIONS } from "../../actions";
 
 const Textarea = ({ socketRef, roomId }) => {
+  const editorref = useRef(null);
   const [textContent, setTextContent] = useState("");
 
-  const handleTextChange = (e) => {
-    const newText = e.target.value;
-    setTextContent(newText);
-
-    socketRef.current?.emit(ACTIONS.CODE_CHANGE, {
-      roomId,
-      code: newText,
-    });
-  };
-
   useEffect(() => {
-    if (socketRef.current) {
-      socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
-        if (code !== null) {
-          setTextContent(code); // This updates the textarea value
+    async function init() {
+      editorref.current = document.getElementById("text-editor");
+
+      editorref.current.on("change", (instance, changes) => {
+        const { origin } = changes;
+        const value = instance.getValue();
+
+        if (origin !== "setValue") {
+          socketRef.current.emit(ACTIONS.CODE_CHANGE, {
+            roomId,
+            value,
+          });
         }
       });
     }
-
-    return () => {
-      socketRef.current?.off(ACTIONS.CODE_CHANGE);
-    };
+    init();
+  }, []);
+  useEffect(() => {
+   if(socketRef.current){
+    socketRef.current.on(ACTIONS.CODE_CHANGE, ({ value }) => {
+      if (value !== null) {
+        editorref.current.setValue(value);
+      }
+    })
+  }
   }, [socketRef.current]);
-
+  const handleTextChange = (e) => {
+    setTextContent(e.target.value);
+  };
   return (
     <div className="flex-1 min-h-0">
       <div className="flex items-center justify-between mb-3">

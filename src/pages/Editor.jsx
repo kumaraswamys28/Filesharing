@@ -1,28 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import toast from "react-hot-toast";
 import Sharebin from "../componets/Sharebin";
 import SideBar from "../componets/SideBar";
+import { initSocket } from "../Sockets/socket-client";
+import { ACTIONS } from "../../actions";
 
 const Editor = () => {
-  const [clients] = useState([
-    { socketId: 1, username: "Alice", userState: "uploading" },
-    { socketId: 2, username: "Bob", userState: "idle" },
-    { socketId: 1, username: "Alice", userState: "uploading" },
-    { socketId: 2, username: "Bob", userState: "idle" },
-    { socketId: 1, username: "Alice", userState: "uploading" },
-    { socketId: 2, username: "Bob", userState: "idle" },
-    { socketId: 3, username: "Charlie", userState: "editing" },
-    { socketId: 1, username: "Alice", userState: "uploading" },
-    { socketId: 2, username: "Bob", userState: "idle" },
-    { socketId: 1, username: "Alice", userState: "uploading" },
-    { socketId: 2, username: "Bob", userState: "idle" },
-    { socketId: 1, username: "Alice", userState: "uploading" },
-    { socketId: 2, username: "Bob", userState: "idle" },
-    { socketId: 3, username: "Charlie", userState: "editing" },
-  ]);
-
   const location = useLocation(); //  sate object
   const navigate = useNavigate();
 
@@ -32,8 +17,65 @@ const Editor = () => {
       navigate("/");
     }
   }, [location.state, navigate]);
+
   const roomId = location.state?.roomId;
   const currentUser = location.state?.currentUser;
+  const socketRef = useRef(null);
+  function handleError(err) {
+    console.error("Socket error:", err);
+    toast.error("An error occurred with the socket connection.");
+    navigate("/");
+  }
+
+  const [clients, setClient] = useState([
+    { socketId: 1, username: "Alice", userState: "uploading" },
+    { socketId: 2, username: "Bob", userState: "idle" },
+    { socketId: 3, username: "Charlie", userState: "editing" },
+    { socketId: 4, username: "Dave", userState: "viewing" },
+    { socketId: 5, username: "Eve", userState: "idle" },
+    { socketId: 6, username: "Frank", userState: "editing" },
+    { socketId: 7, username: "Grace", userState: "uploading" },
+    { socketId: 8, username: "Heidi", userState: "viewing" },
+  ]);
+
+  useEffect(() => {
+    const init = async () => {
+      socketRef.current = await initSocket();
+
+      socketRef.current.on("connect_error", (err) => {
+        handleError(err);
+      });
+
+      socketRef.current.on("connect_failed", (err) => {
+        handleError(err);
+      });
+
+      socketRef.current.emit(ACTIONS.JOIN, {
+        roomId,
+        username: currentUser,
+      });
+      socketRef.current.on(ACTIONS.JOINED, ({ clients, username }) => {
+        if (username !== currentUser) {
+          toast.success(`${username} has joined the room`);
+        }
+        setClient(clients);
+      });
+
+      //listening to disconectin
+      socketRef.current.on(ACTIONS.DISCONNECT, ({ socketId, username }) => {
+        toast.success(`${username} has left the room`);
+        setClient((prev) =>
+          prev.filter((client) => client.socketId !== socketId)
+        );
+      });
+    };
+    init();
+    return()=>{
+      socketRef.current.disconnect();
+      socketRef.current.off(ACTIONS.JOINED);  
+      socketRef.current.off(ACTIONS.DISCONNECT);
+    }
+  }, []);
 
   return (
     <div className="min-h-[100vh] bg-primary flex">

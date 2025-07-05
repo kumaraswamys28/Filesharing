@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const SideBar = ({clients}) => {
-    const { roomId: paramRoomId } = useParams();
-  const location = useLocation(); //  sate object
+    const { roomId } = useParams();
+  const location = useLocation(); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,11 +15,10 @@ const SideBar = ({clients}) => {
       navigate("/");
     }
   }, [location.state, navigate]);
-  const roomId = location.state?.roomId;
   const timestamp = location.state?.timestamp;
 
   const CopyLink = () => {
-    const fullUrl = `${paramRoomId}`;
+    const fullUrl = `${roomId}`;
     navigator.clipboard
       .writeText(fullUrl)
       .then(() => {

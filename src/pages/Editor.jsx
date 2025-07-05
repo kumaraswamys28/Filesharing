@@ -10,7 +10,6 @@ import { ACTIONS } from "../../actions";
 const Editor = () => {
   const location = useLocation(); //  sate object
   const navigate = useNavigate();
-const coderef=useRef(null);
   useEffect(() => {
     if (!location.state) {
       toast.error("Invalid room access. Redirecting...");
@@ -42,15 +41,11 @@ const coderef=useRef(null);
         roomId,
         username: currentUser,
       });
-      socketRef.current.on(ACTIONS.JOINED, ({ clients, username,socketId }) => {
+      socketRef.current.on(ACTIONS.JOINED, ({ clients, username }) => {
         if (username !== currentUser) {
           toast.success(`${username} has joined the room`);
         }
         setClient(clients);
-        socketRef.current.emit(ACTIONS.SYNC_CODE, {
-          code: coderef.current,
-          socketId,
-        })
       });
 
       //listening to disconectin
@@ -105,7 +100,7 @@ const coderef=useRef(null);
       {/* Main Content Area */}
       <div className="flex-1 bg-primary">
         <div className="p-6">
-          <Sharebin onCodeChange={(code)=>{coderef.current=code}} roomId={roomId} socketRef={socketRef} />
+          <Sharebin roomId={roomId} socketRef={socketRef} />
         </div>
       </div>
     </div>

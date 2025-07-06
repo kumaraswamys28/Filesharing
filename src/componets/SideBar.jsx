@@ -18,7 +18,7 @@ const SideBar = ({clients}) => {
   const timestamp = location.state?.timestamp;
 
   const CopyLink = () => {
-    const fullUrl = `${roomId}`;
+    const fullUrl = `${window.location.origin}/${roomId}`;
     navigator.clipboard
       .writeText(fullUrl)
       .then(() => {

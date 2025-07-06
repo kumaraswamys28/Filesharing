@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import { ACTIONS } from "../../actions";
 
-const Textarea = ({ socketRef, roomId }) => {
+const Textarea = ({ socketRef, roomId ,onCodeChange }) => {
   const [textContent, setTextContent] = useState("");
 
   const handleTextChange = (e) => {
     const newText = e.target.value;
-    setTextContent(newText);
+        setTextContent(newText);
 
     socketRef.current?.emit(ACTIONS.CODE_CHANGE, {
       roomId,
       code: newText,
     });
+    onCodeChange(newText); // This updates the textarea value
+
   };
 
   useEffect(() => {
+
     if (socketRef.current) {
       socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
-        console.log("Received code change:", code);
         if (code !== null) {
-        
-          setTextContent(code); // This updates the textarea value
+          setTextContent(code);
         }
       });
     }
@@ -35,7 +36,7 @@ const Textarea = ({ socketRef, roomId }) => {
       <div className="flex items-center justify-between mb-3">
         <h3 className="font-medium text-primary text-lg">Text Editor</h3>
         <div className="text-tertiary text-sm">
-          {/* {textContent.length} characters */}
+          {textContent.length} characters
         </div>
       </div>
       <textarea

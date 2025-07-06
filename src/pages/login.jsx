@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
 const Login = () => {
   const navigate = useNavigate();
@@ -51,8 +51,11 @@ const Login = () => {
       handleSubmit(e);
     }
   };
+const { rmid } = useParams();
 
-
+useEffect(()=>{
+  setRoomId(rmid)
+},[])
 
 
   return (

@@ -49,8 +49,8 @@ const coderef=useRef(null);
         setClient(clients);
         socketRef.current.emit(ACTIONS.SYNC_CODE, {
           code: coderef.current,
-          socketId,
-        })
+          socketId
+        });
       });
 
       //listening to disconectin

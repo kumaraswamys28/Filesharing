@@ -46,6 +46,7 @@ function App() {
         <Hero />
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/:rmid" element={<Login />} />
           <Route path="/editor/:roomId" element={<Editor />} />
           <Route path="/t" element={<ThemeShowcase />} />
           <Route path="*" element={<Errorpage/>} />

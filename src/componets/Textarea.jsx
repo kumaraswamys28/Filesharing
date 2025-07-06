@@ -12,7 +12,7 @@ const Textarea = ({ socketRef, roomId ,onCodeChange }) => {
       roomId,
       code: newText,
     });
-    onCodeChange(newText); // This updates the textarea value
+    onCodeChange(newText);
 
   };
 

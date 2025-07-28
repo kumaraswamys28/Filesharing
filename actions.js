@@ -5,6 +5,4 @@ export const ACTIONS={
     CODE_CHANGE:'code-change',
     SYNC_CODE:'sync-code',
     LEAVE:'leave',
-    
-
 }

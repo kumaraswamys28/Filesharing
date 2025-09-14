@@ -30,22 +30,23 @@ const SideBar = ({clients}) => {
   };
 
   const Sharebtn = () => {
-    const shareData = {
-      title: "Join my session",
-      text: "Join me in this room:",
-      url: window.location.href,
-    };
 
-    if (navigator.share) {
-      navigator
-        .share(shareData)
-        .catch((err) => toast.error("Share failed:", err));
-    } else {
-      toast.error("Sharing not supported. Copying link instead.");
-      navigator.clipboard.writeText(
-        `${shareData.title}\n ${shareData.text}${shareData.url}`
-      );
-    }
+
+    const shareData = {
+      title: "Invitation to Collaborate",
+      text: "I've set up a real-time collaborative session. Please join me using the link below.",
+      url: `${window.location.origin}/${roomId}`,
+    };
+  
+    navigator.clipboard
+      .writeText(shareData.title + "\n" + shareData.text + "\n" + shareData.url)
+      .then(() => {
+        toast.success("Copied to clipboard");
+      })
+      .catch((err) => {
+        toast.error("Failed to copy:", err);
+      });
+  
   };
   return (
     <div className="flex-1 overflow-y-auto h-full">

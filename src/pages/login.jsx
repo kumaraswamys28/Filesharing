@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidV4 } from "uuid";
+
 const Login = () => {
   const navigate = useNavigate();
   const [roomId, setRoomId] = useState("");
@@ -26,7 +27,7 @@ const Login = () => {
         roomId: roomId.trim(),
         currentUser: name.trim(),
         timestamp: new Date().toISOString(),
-      }, //staet objext to pass to next
+      }, // State object to pass to the next route
     });
     console.log("Joining room:", {
       roomId: roomId.trim(),
@@ -35,35 +36,33 @@ const Login = () => {
     });
   };
 
-
-
-  const Createnewroom = (e) => {
+  const createNewRoom = (e) => {
     e.preventDefault();
     const id = uuidV4();
     setRoomId(id);
     toast.success(`New room created with ID: ${id}`);
   };
 
-
-
-  const handelkey = (e) => {
+  const handlekey = (e) => {
     if (e.key === "Enter") {
       handleSubmit(e);
     }
   };
-const { rmid } = useParams();
 
-useEffect(()=>{
-  setRoomId(rmid)
-},[])
+  const { rmid } = useParams();
 
+  // **FIX 1: Handle URL parameter and prevent controlled input warning**
+  // This effect now correctly handles cases where 'rmid' might be undefined
+  // by falling back to an empty string. It also includes 'rmid' in the
+  // dependency array as a best practice.
+  useEffect(() => {
+    setRoomId(rmid || "");
+  }, [rmid]);
 
   return (
     <div className="min-h-[100vh] bg-primary flex pt-16 justify-center">
       <div className="w-full max-w-md">
         <div className="bg-secondary rounded-2xl shadow-themed-xl p-8 border border-primary">
-
-
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-brand rounded-full mb-4 shadow-themed-md">
               <i className="fi fi-br-users text-white text-2xl"></i>
@@ -73,7 +72,6 @@ useEffect(()=>{
               Enter your details to connect with others
             </p>
           </div>
-
 
           <div className="space-y-6">
             {/* Room ID Input */}
@@ -86,7 +84,7 @@ useEffect(()=>{
                 <input
                   type="text"
                   value={roomId}
-                  onKeyUp={handelkey}
+                  onKeyUp={handlekey}
                   onChange={(e) => setRoomId(e.target.value)}
                   onFocus={() => setFocusedField("roomId")}
                   onBlur={() => setFocusedField(null)}
@@ -113,7 +111,7 @@ useEffect(()=>{
                 <input
                   type="text"
                   value={name}
-                  onKeyUp={handelkey}
+                  onKeyUp={handlekey}
                   onChange={(e) => setName(e.target.value)}
                   onFocus={() => setFocusedField("name")}
                   onBlur={() => setFocusedField(null)}
@@ -143,7 +141,6 @@ useEffect(()=>{
             </button>
           </div>
 
-
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-primary"></div>
@@ -156,14 +153,15 @@ useEffect(()=>{
           {/* Create Room Link */}
           <div className="text-center">
             <p className="text-secondary text-sm mb-3">Don't have a room ID?</p>
-            <a
-              onClick={Createnewroom}
-              href=""
+            {/* **FIX 2: Changed from <a> to <button> for better semantics ** */}
+            <button
+              type="button"
+              onClick={createNewRoom}
               className="inline-flex items-center text-brand hover:text-blue-600 font-medium text-sm transition-colors duration-200 hover:underline"
             >
               <i className="fi fi-br-plus mr-2"></i>
               Create a new room
-            </a>
+            </button>
           </div>
         </div>
 
@@ -172,7 +170,6 @@ useEffect(()=>{
             Secure and private room connection
           </p>
         </div>
-
       </div>
     </div>
   );

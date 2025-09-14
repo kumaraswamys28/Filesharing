@@ -17,7 +17,7 @@ export default function ThemeShowcase() {
               <h3 className="font-medium text-primary mb-2">Primary</h3>
               <p className="text-secondary text-sm">Main background color</p>
             </div>
-            <div className="bg-secondary border border-primary rounded-lg p-4">
+            <div className="bg-secondary border border-secondary rounded-lg p-4">
               <h3 className="font-medium text-primary mb-2">Secondary</h3>
               <p className="text-secondary text-sm">Card backgrounds</p>
             </div>

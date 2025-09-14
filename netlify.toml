@@ -1,0 +1,17 @@
+# This is the main build configuration for your site.
+# Even if you drag-and-drop, it's good practice to have this.
+[build]
+  # The command to build your site.
+  command = "npm run build"
+  # The directory that contains the built site.
+  publish = "dist"
+
+# The following redirect rule is essential for Single-Page Applications (SPAs).
+[[redirects]]
+  # The source path. "/*" matches every path on your site.
+  from = "/*"
+  # The destination path.
+  to = "/index.html"
+  # The HTTP status code. 200 means "OK" and serves the file
+  # without changing the URL in the browser's address bar.
+  status = 200

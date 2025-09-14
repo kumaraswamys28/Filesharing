@@ -1,0 +1,393 @@
+/* ===== IMPORTS ===== */
+@import "tailwindcss";
+/* @import url('https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'); */
+@import "@flaticon/flaticon-uicons/css/all/all";
+
+
+/* Make dark variant work without config.js */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===== CSS CUSTOM PROPERTIES ===== */
+/* Root variables for light theme */
+:root {
+  /* Background colors */
+  --color-bg-primary: 253 253 253;
+  --color-bg-secondary: 248 249 250;
+  --color-bg-tertiary: 241 245 249;
+  --color-bg-accent: 240 253 244;
+  
+  /* Text colors */
+  --color-text-primary: 17 24 39;
+  --color-text-secondary: 31 41 55;
+  --color-text-tertiary: 107 114 128;
+  --color-text-accent: 5 150 105;
+  
+  /* Border colors */
+  --color-border-primary: 229 231 235;
+  --color-border-secondary: 209 213 219;
+  --color-border-accent: 167 243 208;
+  
+  /* Brand colors - Royal palette */
+  --color-brand-primary: 5 150 105;    /* Emerald green */
+  --color-brand-secondary: 217 119 6;   /* Royal gold */
+  --color-brand-accent: 30 58 138;      /* Deep royal blue */
+  
+  /* Status colors */
+  --color-success: 34 197 94;
+  --color-warning: 245 158 11;
+  --color-error: 220 38 38;
+  --color-info: 59 130 246;
+  
+  /* Interactive states */
+  --color-hover: 243 244 246;
+  --color-active: 229 231 235;
+  --color-focus: 5 150 105;
+  
+  /* Shadows with royal tint */
+  --shadow-sm: 0 1px 2px 0 rgb(5 150 105 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(5 150 105 / 0.12), 0 2px 4px -2px rgb(5 150 105 / 0.08);
+  --shadow-lg: 0 10px 15px -3px rgb(5 150 105 / 0.16), 0 4px 6px -4px rgb(5 150 105 / 0.08);
+  --shadow-xl: 0 20px 25px -5px rgb(5 150 105 / 0.2), 0 8px 10px -6px rgb(5 150 105 / 0.08);
+}
+
+/* Dark theme variables */
+.dark {
+  /* Background colors */
+  --color-bg-primary: 17 24 39;
+  --color-bg-secondary: 30 41 59;
+  --color-bg-tertiary: 51 65 85;
+  --color-bg-accent: 31 41 55;
+  
+  /* Text colors */
+  --color-text-primary: 248 250 252;
+  --color-text-secondary: 226 232 240;
+  --color-text-tertiary: 148 163 184;
+  --color-text-accent: 52 211 153;
+  
+  /* Border colors */
+  --color-border-primary: 71 85 105;
+  --color-border-secondary: 100 116 139;
+  --color-border-accent: 6 182 212;
+  
+  /* Brand colors - Royal palette for dark mode */
+  --color-brand-primary: 52 211 153;    /* Brighter emerald */
+  --color-brand-secondary: 251 191 36;   /* Golden yellow */
+  --color-brand-accent: 99 102 241;      /* Royal purple */
+  
+  /* Status colors */
+  --color-success: 74 222 128;
+  --color-warning: 251 191 36;
+  --color-error: 248 113 113;
+  --color-info: 96 165 250;
+  
+  /* Interactive states */
+  --color-hover: 51 65 85;
+  --color-active: 71 85 105;
+  --color-focus: 52 211 153;
+  
+  /* Shadows with royal tint */
+  --shadow-sm: 0 1px 2px 0 rgb(52 211 153 / 0.2);
+  --shadow-md: 0 4px 6px -1px rgb(52 211 153 / 0.3), 0 2px 4px -2px rgb(52 211 153 / 0.2);
+  --shadow-lg: 0 10px 15px -3px rgb(52 211 153 / 0.4), 0 4px 6px -4px rgb(52 211 153 / 0.2);
+  --shadow-xl: 0 20px 25px -5px rgb(52 211 153 / 0.5), 0 8px 10px -6px rgb(52 211 153 / 0.2);
+}
+
+/* ===== TAILWIND UTILITY LAYER ===== */
+@layer utilities {
+  /* Background utilities */
+  .bg-primary { background-color: rgb(var(--color-bg-primary)); }
+  .bg-secondary { background-color: rgb(var(--color-bg-secondary)); }
+  .bg-tertiary { background-color: rgb(var(--color-bg-tertiary)); }
+  .bg-accent { background-color: rgb(var(--color-bg-accent)); }
+  
+  /* Text utilities */
+  .text-primary { color: rgb(var(--color-text-primary)); }
+  .text-secondary { color: rgb(var(--color-text-secondary)); }
+  .text-tertiary { color: rgb(var(--color-text-tertiary)); }
+  .text-accent { color: rgb(var(--color-text-accent)); }
+  
+  /* Border utilities */
+  .border-primary { border-color: rgb(var(--color-border-primary)); }
+  .border-secondary { border-color: rgb(var(--color-border-secondary)); }
+  .border-accent { border-color: rgb(var(--color-border-accent)); }
+  
+  /* Brand utilities */
+  .bg-brand { background-color: rgb(var(--color-brand-primary)); }
+  .bg-brand-secondary { background-color: rgb(var(--color-brand-secondary)); }
+  .bg-brand-accent { background-color: rgb(var(--color-brand-accent)); }
+  .text-brand { color: rgb(var(--color-brand-primary)); }
+  .text-brand-secondary { color: rgb(var(--color-brand-secondary)); }
+  .text-brand-accent { color: rgb(var(--color-brand-accent)); }
+  .border-brand { border-color: rgb(var(--color-brand-primary)); }
+  
+  /* Status utilities */
+  .bg-success { background-color: rgb(var(--color-success)); }
+  .bg-warning { background-color: rgb(var(--color-warning)); }
+  .bg-error { background-color: rgb(var(--color-error)); }
+  .bg-info { background-color: rgb(var(--color-info)); }
+  .text-success { color: rgb(var(--color-success)); }
+  .text-warning { color: rgb(var(--color-warning)); }
+  .text-error { color: rgb(var(--color-error)); }
+  .text-info { color: rgb(var(--color-info)); }
+  
+  /* Interactive states */
+  .hover-bg { background-color: rgb(var(--color-hover)); }
+  .active-bg { background-color: rgb(var(--color-active)); }
+  .focus-ring { 
+    outline: 2px solid rgb(var(--color-focus));
+    outline-offset: 2px;
+  }
+  
+  /* Shadow utilities */
+  .shadow-themed-sm { box-shadow: var(--shadow-sm); }
+  .shadow-themed-md { box-shadow: var(--shadow-md); }
+  .shadow-themed-lg { box-shadow: var(--shadow-lg); }
+  .shadow-themed-xl { box-shadow: var(--shadow-xl); }
+  
+  /* Royal accent utilities */
+  .bg-royal-gradient { 
+    background: linear-gradient(135deg, rgb(var(--color-brand-primary)), rgb(var(--color-brand-secondary)));
+  }
+  .text-royal-gradient {
+    background: linear-gradient(135deg, rgb(var(--color-brand-primary)), rgb(var(--color-brand-secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ===== BASE STYLES ===== */
+/* Smooth transitions for all elements */
+* {
+  transition-property: color, background-color, border-color, box-shadow, transform;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#root{
+    background: rgb(var(--color-bg-primary));
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+/* Webkit browsers scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-bg-secondary));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgb(var(--color-brand-primary)), rgb(var(--color-brand-secondary)));
+  border-radius: 5px;
+  border: 2px solid rgb(var(--color-bg-secondary));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgb(var(--color-brand-secondary)), rgb(var(--color-brand-accent)));
+}
+
+/* ===== SELECTION STYLING ===== */
+::selection {
+  background: linear-gradient(135deg, rgb(var(--color-brand-primary) / 0.2), rgb(var(--color-brand-secondary) / 0.2));
+  color: rgb(var(--color-text-primary));
+}
+
+/* ===== FOCUS STYLING ===== */
+/* Better accessibility focus */
+:focus-visible {
+  outline: 3px solid rgb(var(--color-focus));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgb(var(--color-focus) / 0.1);
+}
+
+/* ===== THEME TOGGLE COMPONENT STYLES ===== */
+/* Main toggle container */
+.theme-toggle {
+  position: relative;
+  width: 68px;
+  height: 36px;
+  background: linear-gradient(135deg, rgb(var(--color-bg-tertiary)), rgb(var(--color-bg-secondary)));
+  border: 2px solid rgb(var(--color-border-primary));
+  border-radius: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 6px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  background: linear-gradient(135deg, rgb(var(--color-hover)), rgb(var(--color-bg-tertiary)));
+  border-color: rgb(var(--color-brand-primary));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid rgb(var(--color-focus));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgb(var(--color-focus) / 0.1);
+}
+
+/* Sliding circle indicator */
+.theme-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, rgb(var(--color-brand-primary)), rgb(var(--color-brand-secondary)));
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgb(255 255 255 / 0.2);
+  z-index: 2;
+}
+
+.theme-slider.dark {
+  transform: translateX(32px);
+  background: linear-gradient(135deg, rgb(var(--color-brand-accent)), rgb(var(--color-brand-primary)));
+}
+
+.theme-slider:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgb(255 255 255 / 0.3);
+}
+
+.theme-slider.dark:hover {
+  transform: translateX(32px) scale(1.05);
+}
+
+/* Icon styling inside slider */
+.theme-icon {
+  font-size: 14px;
+  color: white;
+  opacity: 0.95;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Background labels for sun/moon */
+.theme-label {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgb(var(--color-text-tertiary));
+  pointer-events: none;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.theme-label.sun {
+  left: 8px;
+}
+
+.theme-label.moon {
+  right: 8px;
+}
+
+/* Hide labels when slider is over them */
+.theme-toggle:not(.dark) .theme-label.sun,
+.theme-toggle.dark .theme-label.moon {
+  opacity: 0.2;
+  transform: scale(0.9);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+/* Adjust theme toggle size on smaller screens */
+@media (max-width: 640px) {
+  .theme-toggle {
+    width: 64px;
+    height: 34px;
+  }
+  
+  .theme-slider {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .theme-slider.dark {
+    transform: translateX(30px);
+  }
+  
+  .theme-slider.dark:hover {
+    transform: translateX(30px) scale(1.05);
+  }
+  
+  .theme-icon {
+    font-size: 13px;
+  }
+}
+
+/* ===== ANIMATION KEYFRAMES ===== */
+/* Royal bounce animation */
+@keyframes royalBounce {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.1) rotate(5deg); }
+  50% { transform: scale(1.05) rotate(-2deg); }
+  75% { transform: scale(1.08) rotate(1deg); }
+  100% { transform: scale(1); }
+}
+
+.theme-slider.animate-toggle {
+  animation: royalBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Royal shimmer effect */
+@keyframes royalShimmer {
+  0% { 
+    background-position: -200% 0;
+    box-shadow: var(--shadow-md);
+  }
+  50% {
+    box-shadow: var(--shadow-lg);
+  }
+  100% { 
+    background-position: 200% 0;
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.theme-toggle:active {
+  background: linear-gradient(135deg, rgb(var(--color-brand-primary) / 0.1), rgb(var(--color-brand-secondary) / 0.1));
+  animation: royalShimmer 1s ease-in-out;
+}
+
+/* Royal glow pulse */
+@keyframes royalGlow {
+  0%, 100% { 
+    box-shadow: var(--shadow-md);
+  }
+  50% { 
+    box-shadow: var(--shadow-xl), 0 0 20px rgb(var(--color-brand-primary) / 0.3);
+  }
+}
+
+.theme-slider:active {
+  animation: royalGlow 0.8s ease-in-out;
+}
+
+/* ===== PRINT STYLES ===== */
+/* Ensure proper styling when printing */
+@media print {
+  .theme-toggle {
+    display: none;
+  }
+  
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

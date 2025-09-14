@@ -72,12 +72,7 @@ const coderef=useRef(null);
   const [clients, setClient] = useState([
     { socketId: 1, username: "Alice", userState: "uploading" },
     { socketId: 2, username: "Bob", userState: "idle" },
-    { socketId: 3, username: "Charlie", userState: "editing" },
-    { socketId: 4, username: "Dave", userState: "viewing" },
-    { socketId: 5, username: "Eve", userState: "idle" },
-    { socketId: 6, username: "Frank", userState: "editing" },
-    { socketId: 7, username: "Grace", userState: "uploading" },
-    { socketId: 8, username: "Heidi", userState: "viewing" },
+  
   ]);
 
  

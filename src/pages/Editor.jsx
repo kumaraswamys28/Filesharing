@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import toast from "react-hot-toast";
-import Sharebin from "../componets/Sharebin";
 import SideBar from "../componets/SideBar";
 import { initSocket } from "../Sockets/socket-client.js";
 import { ACTIONS } from "../../actions";
+import Textarea from "../componets/Textarea.jsx";
 
 const Editor = () => {
   const location = useLocation(); //  sate object
@@ -70,15 +70,13 @@ const coderef=useRef(null);
   },[]);
 
   const [clients, setClient] = useState([
-    { socketId: 1, username: "Alice", userState: "uploading" },
-    { socketId: 2, username: "Bob", userState: "idle" },
-  
+    // { socketId: 1, username: "Alice", userState: "uploading" },  
   ]);
 
  
   return (
     <div className="min-h-[100vh] bg-primary flex">
-      <div className="w-80 bg-secondary border-r border-primary shadow-themed-lg">
+      <div className="w-80 h-[102vh] bg-secondary border-r border-primary ">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-primary">
           <div className="flex items-center space-x-3">
@@ -98,9 +96,16 @@ const coderef=useRef(null);
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 bg-primary">
-        <div className="p-6">
-          <Sharebin onCodeChange={(code)=>{coderef.current=code}} roomId={roomId} socketRef={socketRef} />
+      <div className="flex-1 flex flex-col max-w-full max-h-full bg-primary overflow-hidden">
+       
+        <div className=" flex-1 flex flex-col min-h-0">
+          <Textarea
+            roomId={roomId}
+            onCodeChange={(code) => {
+              coderef.current = code;
+            }}
+            socketRef={socketRef}
+          />
         </div>
       </div>
     </div>

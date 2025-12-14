@@ -171,7 +171,7 @@
 /* ===== SCROLLBAR STYLING ===== */
 /* Webkit browsers scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
 }
 
 ::-webkit-scrollbar-track {

@@ -1,33 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useTheme } from "../ThemeContext";
 
 const Hero = () => {
-  const [theme, setTheme] = useState("light");
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.getElementById("root").classList.add(savedTheme);
-    }
-  }, []);
-
-
-
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.getElementById("root").classList.remove(theme);
-    document.getElementById("root").classList.add(newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
-
-
-
+  const { theme, toggleTheme } = useTheme();
 
 
   return (
-    <header className="w-full bg-primary border-b border-primary px-2 sticky top-0 py-4 shadow-themed-md">
+    <header className="w-full bg-primary border-b z-50 border-primary px-2 sticky top-0 py-4 shadow-themed-md">
       <div className="flex justify-between w-full mx-2 ">
         <h1 className="text-2xl font-bold text-primary">ShareBin</h1>
 

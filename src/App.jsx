@@ -5,7 +5,7 @@ import Login from "./pages/login";
 import Editor from "./pages/Editor";
 import { Toaster } from "react-hot-toast";
 import Errorpage from "./pages/Errorpage";
-
+import { FaGithub } from "react-icons/fa";
 function App() {
   const currentYear = new Date().getFullYear();
 
@@ -42,21 +42,37 @@ function App() {
           }}
         ></Toaster>
       </div>
-      <div className="min-h-auto">
+      <div className="h-min-h-screen z-10 flex flex-col">
         <Hero />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/:rmid" element={<Login />} />
           <Route path="/editor/:roomId" element={<Editor />} />
           <Route path="/t" element={<ThemeShowcase />} />
-          <Route path="*" element={<Errorpage/>} />
+          <Route path="*" element={<Errorpage />} />
         </Routes>
-
-
-        <footer className="bg-secondary text-primary p-4 w-full fixed bottom-0 text-center border-t border-primary">
-          <p>&copy; {currentYear} ShareBin. All rights reserved.</p>
-        </footer>
       </div>
+      <footer className="bg-secondary text-primary p-4 w-full h-[10vh] z-20 text-center border-t border-primary">
+        <p>&copy; {currentYear} ShareBin. All rights reserved.</p>
+        <div className="flex mt-[10px] justify-center items-center">
+          {/* 2. This is your new link, exactly like the image */}
+          <a
+            href="https://kumaraswamys28.github.io/project/" // <-- Change this to your GitHub URL
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-2 text-primary hover:text-brand hover:underline"
+          >
+            <FaGithub />
+            <span>More Projects</span>
+          </a>
+
+          {/* You can add other links here if you want */}
+          {/* <a href="/other-link" className="ml-4 hover:underline">
+        Another Link
+      </a> 
+      */}
+        </div>
+      </footer>
     </>
   );
 }
